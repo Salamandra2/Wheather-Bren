@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Bren</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="app-container">
+    <header class="app-header">
+      <div class="top-bar">
+        <h1>Weather Bren 🌤️</h1>
+        <!-- Toggle °C / °F -->
+        <button id="unitToggleBtn" class="unit-toggle" onclick="toggleUnit()">°C</button>
+      </div>
+      
+      <!-- Caixa de Pesquisa com Auto-complete -->
+      <div class="search-wrapper">
+        <div class="search-box">
+          <input type="text" id="cityInput" placeholder="Digite a cidade (ex: Luanda, Lisboa)" autocomplete="on">
+          <button id="searchBtn" onclick="searchCity()">Buscar</button>
+          <button id="geoBtn" onclick="getWeatherByLocation()" title="Usar minha localização">Minha Localização</button>
+        </div>
+        <!-- Menu Suspenso de Sugestões -->
+        <ul id="suggestionsList" class="suggestions-list hidden"></ul>
+      </div>
+
+      <p id="error" class="error"></p>
+    </header>
+
+    <!-- RESULTADO DA BUSCA ATUAL -->
+    <section id="searchResults" class="search-results hidden">
+      <div class="card main-card">
+        <div class="card-header-actions">
+          <span class="badge">Resultado da Busca</span>
+          <button id="addFavoriteBtn" class="btn-add-favorite" onclick="addCurrentToFavorites()">+ Adicionar às Salvas</button>
+        </div>
+
+        <h2 id="cityName">-</h2>
+        <div id="weatherIcon" class="weather-icon"></div>
+        <div class="temp" id="temperature">-- °C</div>
+        <p id="weatherDesc" class="weather-desc">-</p>
+
+        <!-- Métricas -->
+        <div class="metrics-grid">
+          <div class="metric-item"><span class="label">Sensação</span><span id="feelsLike" class="value">--</span></div>
+          <div class="metric-item"><span class="label">Índice UV</span><span id="uvIndex" class="value">--</span></div>
+          <div class="metric-item"><span class="label">Chuva</span><span id="precipitation" class="value">--</span></div>
+          <div class="metric-item"><span class="label">Vento</span><span id="wind" class="value">--</span></div>
+          <div class="metric-item"><span class="label">Umidade</span><span id="humidity" class="value">--</span></div>
+          <div class="metric-item"><span class="label">Pôr do Sol</span><span id="sunset" class="value">--</span></div>
+        </div>
+
+        <!-- Previsão Horária -->
+        <h3 class="section-title">Hoje (Hora a Hora)</h3>
+        <div id="hourlyForecast" class="hourly-container"></div>
+
+        <!-- Previsão 7 Dias -->
+        <h3 class="section-title">Próximos 7 dias</h3>
+        <div id="forecast" class="forecast-container"></div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE CIDADES SALVAS -->
+    <section class="favorites-section">
+      <h2 class="favorites-title">Minhas Cidades Salvas </h2>
+      <div id="favoritesGrid" class="cities-grid"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
